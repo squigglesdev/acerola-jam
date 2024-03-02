@@ -9,7 +9,7 @@ class Camera {
 
     setZoom(zoom) {
         this.zoom = zoom;
-        this.targetposition = createVector(0, height/2.2 * zoom);
+        this.targetposition = createVector(0, height/2.2);
     }
 
     setPosition(position) {
@@ -41,5 +41,6 @@ class Camera {
 
     endFrame() {  
         translate(this.position.x, this.position.y);
+        scale(2);
     }
 }

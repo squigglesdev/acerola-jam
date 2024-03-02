@@ -20,7 +20,35 @@ class Shape {
                 if (this.shape[i][j] === 1) {
                     push();
                     rectMode(CORNER);
-                    fill(this.color);
+                    shapeTexture.noStroke();
+                    shapeTexture.rect(0,0,shapeTexture.width,shapeTexture.height);
+                    shapeTexture.shader(shapeShader);
+                    // set the color, converted into a vec4
+                    shapeShader.setUniform('uColor', [red(this.color) / 255, green(this.color) / 255, blue(this.color) / 255, 1]);
+
+                    // set the resolution
+                    shapeShader.setUniform('uResolution', [shapeTexture.width, shapeTexture.height]);
+
+                    // set the position
+                    // map the position to a range of 0 to 1
+                    let x = map(this.position.x + j, 0, grid.width, 0.5, 1);
+                    let y = map(this.position.y + i, 0, grid.height, 0, 1);
+                    shapeShader.setUniform('uPosition', [x, 1 - y]);
+
+                    //set the time
+                    shapeShader.setUniform('uTime', millis() / 1000);
+
+                    // set the mouse uniform
+
+                    //map the mouse position to a range of 0 to 1 relative to the shape
+
+                    let mx = map(mouseX, 0, width, 0.5, 1);
+                    let my = map(mouseY, 0, height, 0, 1);
+                    shapeShader.setUniform('uMouse', [mx, 1 - my]);
+
+                    //fill(this.color);
+                    texture(shapeTexture);
+                    
                     rect((this.position.x + j) * 50 - grid.width * 25, (this.position.y + i) * 50, 50, 50);
                     pop();
                     

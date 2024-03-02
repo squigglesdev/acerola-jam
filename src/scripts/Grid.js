@@ -25,6 +25,7 @@ class Grid {
         for (let x = 0; x < this.width + 1; x++) {
             for (let y = 0; y < this.height + 1; y++) {
                 stroke(255);
+                strokeWeight(3);
                 line(0 - this.width * 25, y * 50, this.width * 25, y * 50);
             }
             stroke(255);
