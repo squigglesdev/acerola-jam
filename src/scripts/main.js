@@ -13,14 +13,12 @@ function preload() {
 
 function setup() {
     gameCanvas = createCanvas(window.innerWidth, window.innerHeight, WEBGL);
-    shapeTexture = createGraphics(50, 50, WEBGL);
+
+    gameManager = new GameManager();
 
     mainCamera = new Camera();
     mainCamera.setZoom(0.85);
-    grid = new Grid(10, 20);
-    grid.generate();
 
-    shape = new Shape();
     background(0);
 }
 
@@ -31,10 +29,14 @@ function windowResized() {
 function draw() {
 
     deltaTime = 1 / frameRate();
-    mainCamera.beginFrame();
-    background(0);
-    grid.draw();
+    time += deltaTime;
 
-    shape.draw();
+    mainCamera.beginFrame();
+    background(16,21,27);
+    
+    
+    gameManager.update();
+
+
     mainCamera.endFrame();
 }
