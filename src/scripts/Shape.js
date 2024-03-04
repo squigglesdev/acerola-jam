@@ -1,10 +1,11 @@
 class Shape {
     constructor() {
         // Shape matrix
-        this.shape = Shapes.randomShapes();
+        this.shapeChoice = shapes.randomShapes();
+        this.shape = this.shapeChoice.shape;
 
         // Position - start in the centre
-        if (this.shape === Shapes.O) {
+        if (this.shape === shapes.O) {
             this.position = createVector(4, 0);
         } else {
             this.position = createVector(3, 0);
@@ -13,13 +14,13 @@ class Shape {
         this.identifier = random(1000000);
 
         // Color
-        this.color = color(random(255), random(255), random(255));
+        this.color = this.shapeChoice.color;
 
         // Texture
-        this.texture = createGraphics(50, 50, WEBGL);
-        this.texturestopped = false;
-        this.shader = shapeShader.copyToContext(this.texture);
-        this.backupTexture = createGraphics(50, 50);
+        this.texture = this.shapeChoice.texture;
+
+        // Shader
+        this.shader = this.shapeChoice.shader;
     }
 
     draw(grid) {
@@ -29,11 +30,11 @@ class Shape {
                 if (this.shape[i][j] === 1) {
                     push();
                     rectMode(CORNER);
-                    if (!this.texturestopped) {
+                    if (this.texture !== undefined || this.texture !== null) {
                         this.texture.noStroke();
                         this.texture.rect(0,0,this.texture.width,this.texture.height);
                         this.texture.shader(this.shader);
-                    
+                        
                         // set the color, converted into a vec4
                         this.shader.setUniform('uColor', [red(this.color) / 255, green(this.color) / 255, blue(this.color) / 255, 1]);
 
@@ -59,19 +60,45 @@ class Shape {
 
                         //fill(this.color);
                         texture(this.texture);
-                        
-                    } else {
-                        texture(this.backupTexture);
                     }
-                    
-                    rect((this.position.x + j) * 50 - grid.width * 25, (this.position.y + i) * 50, 50, 50);
+                    if (!(this.position.y + i > 19)) {
+                        rect((this.position.x + j) * 50 - grid.width * 25, (this.position.y + i) * 50, 50, 50);
+                    }
                     pop();
                     
                     // Set the corresponding grid space to the shape's identifier
-                    grid.setSpace(this.position.x + j, this.position.y + i, this.identifier);
+                    console.log(!(this.position.y + i > 19));
+                    if (!(this.position.y + i > 19)) {
+                        grid.setSpace(this.position.x + j, this.position.y + i, this.identifier);
+                    }
                 }
             }
         }
+    }
+
+    getRows() {
+        let rows = [];
+        for (let i = 0; i < this.shape.length; i++) {
+            let row = this.position.y + i;
+            if (!rows.includes(row)) {
+                rows.push(row);
+            }
+        }
+        return rows;
+    }
+
+    //used for clearing rows
+    setShapeFromRow(row) {
+        let y = this.gridToLocal(0, row).y;
+        //make the shape at row y 0
+        this.shape[y].forEach(block => {
+            block = 0;
+        });
+    }
+
+    //Returns the position of a space in the shape matrix given a space in the grid
+    gridToLocal(x, y) {
+        return createVector(x - this.position.x, y - this.position.y);
     }
 
     moveDown() {
@@ -133,7 +160,7 @@ class Shape {
             for (let j = 0; j < this.shape[i].length; j++) {
                 if (this.shape[i][j] === 1) {
                     // Check if the shape is at the bottom of the grid, or if there is another shape below it
-                    if (this.position.y + i + 1 >= this.grid.height || (this.grid.spaces[this.position.x + j][this.position.y + i + 1] !== this.identifier && this.grid.spaces[this.position.x + j][this.position.y + i + 1])) {
+                    if (this.position.y + i + 1 >= this.grid.height || (this.grid.spaces[this.position.y + i + 1][this.position.x + j] !== this.identifier && this.grid.spaces[this.position.y + i + 1][this.position.x + j])) {
                         return false;
                     }
                 }
@@ -147,18 +174,12 @@ class Shape {
             for (let j = 0; j < this.shape[i].length; j++) {
                 if (this.shape[i][j] === 1) {
                     // Check if the shape is at the edge of the grid, or if there is another shape to the side
-                    if (this.position.x + j + direction < 0 || this.position.x + j + direction >= this.grid.width || (this.grid.spaces[this.position.x + j + direction][this.position.y + i] !== this.identifier && this.grid.spaces[this.position.x + j + direction][this.position.y + i])) {
+                    if (this.position.x + j + direction < 0 || this.position.x + j + direction >= this.grid.width || (this.grid.spaces[this.position.y + i][this.position.x + j + direction] !== this.identifier && this.grid.spaces[this.position.y + i][this.position.x + j + direction])) {
                         return false;
                     }
                 }
             }
         }
         return true;
-    }
-
-    stopTexture() {
-        this.texturestopped = true;
-        this.backupTexture = this.texture.get();
-        this.texture = null;
     }
 }

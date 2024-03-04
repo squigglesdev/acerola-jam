@@ -6,16 +6,20 @@ class Grid {
     }
 
     generate() {
-        for (let x = 0; x < this.width; x++) {
-            this.spaces[x] = [];
-            for (let y = 0; y < this.height; y++) {
-                this.spaces[x][y] = false;
+        for (let y = 0; y < this.height; y++) {
+            this.spaces[y] = [];
+            for (let x = 0; x < this.width; x++) {
+                this.spaces[y][x] = false;
             }
         }
     }
 
     setSpace(x, y, value) {
-        this.spaces[x][y] = value;
+        try {
+            this.spaces[y][x] = value;
+        } catch (e) {
+            console.log('error setting space', x, y, value);
+        }
     }
 
     draw() {
@@ -36,13 +40,14 @@ class Grid {
     checkRows() {
         let rows = [];
         for (let y = 0; y < this.height; y++) {
-            let full = true;
+            let isRow = true;
             for (let x = 0; x < this.width; x++) {
-                if (!this.spaces[x][y] || isNaN(this.spaces[x][y])) {
-                    full = false;
+                if (!this.spaces[y][x]) {
+                    isRow = false;
+                    break;
                 }
             }
-            if (full) {
+            if (isRow) {
                 rows.push(y);
             }
         }
@@ -50,12 +55,10 @@ class Grid {
     }
 
     clearRows(rows) {
-        for (let i = 0; i < rows.length; i++) {
-            for (let x = 0; x < this.width; x++) {
-                for (let y = rows[i]; y > 0; y--) {
-                    this.spaces[x][y] = this.spaces[x][y - 1];
-                }
-            }
-        }
+        rows.forEach(row => {
+            console.log('clearing row', row);
+            this.spaces.splice(row, 1);
+            this.spaces.unshift(new Array(this.width).fill(false));
+        });
     }
 }

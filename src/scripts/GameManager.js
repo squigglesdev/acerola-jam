@@ -14,15 +14,16 @@ class GameManager {
     update() {
         this.handleInput();
 
+
         if (this.turnInProgress) {
             // every second, move the current shape down
-            if (time % 1 < deltaTime) {
+            if (time % 0.5 < deltaTime) {
                 this.turnInProgress = this.currentShape.moveDown();
             }
         } else {
-            this.oldShapes.push(this.currentShape);
-            this.currentShape.stopTexture();
+            
             this.checkRows();
+            this.oldShapes.push(this.currentShape);
             this.spawnShape();
         }
 
@@ -40,13 +41,15 @@ class GameManager {
         }
 
         this.grid.draw();
+
+        
     }
 
     handleInput() {
-        if (keyIsDown(LEFT_ARROW)) {
+        if (keyIsDown(LEFT_ARROW) && this.time % 0.25 < deltaTime) {
             this.currentShape.moveLeft();
         }
-        if (keyIsDown(RIGHT_ARROW)) {
+        if (keyIsDown(RIGHT_ARROW) && this.time % 0.25 < deltaTime) {
             this.currentShape.moveRight();
         }
         //if (keyIsDown(DOWN_ARROW)) {
@@ -67,6 +70,19 @@ class GameManager {
         if (rows.length > 0) {
             this.score += rows.length * 100;
             this.grid.clearRows(rows);
+            this.oldShapes.forEach(shape => {
+                rows.forEach(row => {
+                    if(shape.getRows().includes(row)) {
+                        
+                        shape.setShapeFromRow(row);
+                    }
+                    
+                });
+                shape.position.y++;
+            });
+
+                
+                
         }
     }
 }

@@ -1,49 +1,49 @@
 class Shapes {
-    static I = [
+    I = { shape: [
         [0, 0, 0, 0],
         [1, 1, 1, 1],
         [0, 0, 0, 0],
         [0, 0, 0, 0]
-    ];
+    ], color: "#6bdbc1", texture: iTexture, shader: iShader};
 
-    static J = [
+    J = { shape: [
         [1, 0, 0],
         [1, 1, 1],
         [0, 0, 0]
-    ];
+    ], color: "#4a5db0", texture: jTexture, shader: jShader};
 
-    static L = [
+    L = { shape: [
         [0, 0, 1],
         [1, 1, 1],
         [0, 0, 0]
-    ];
+    ], color: "#eba715", texture: lTexture, shader: lShader};
 
-    static O = [
+    O = { shape: [
         [1, 1],
         [1, 1]
-    ];
+    ], color: "#ebd515", texture: oTexture, shader: oShader};
 
-    static S = [
+    S = { shape: [
         [0, 1, 1],
         [1, 1, 0],
         [0, 0, 0]
-    ];
+    ], color: "#69e34d", texture: sTexture, shader: sShader};
 
-    static T = [
+    T = { shape: [
         [0, 1, 0],
         [1, 1, 1],
         [0, 0, 0]
-    ];
+    ], color: "#d444ca", texture: tTexture, shader: tShader};
 
-    static Z = [
+    Z ={ shape: [
         [1, 1, 0],
         [0, 1, 1],
         [0, 0, 0]
-    ];
+    ], color: "#d63838", texture: zTexture, shader: zShader};
 
-    static shapes = [Shapes.I, Shapes.J, Shapes.L, Shapes.O, Shapes.S, Shapes.T, Shapes.Z];
+    shapes = [this.I, this.J, this.L, this.O, this.S, this.T, this.Z];
 
-    static randomShapes() {
-        return Shapes.shapes[Math.floor(Math.random() * Shapes.shapes.length)];
+    randomShapes() {
+        return this.shapes[Math.floor(Math.random() * this.shapes.length)];
     }
 }
