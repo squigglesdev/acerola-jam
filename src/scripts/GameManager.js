@@ -17,13 +17,12 @@ class GameManager {
 
         if (this.turnInProgress) {
             // every second, move the current shape down
-            if (time % 0.5 < deltaTime) {
+            if (time % 0.25 < deltaTime) {
                 this.turnInProgress = this.currentShape.moveDown();
             }
         } else {
-            
-            this.checkRows();
             this.oldShapes.push(this.currentShape);
+            this.checkRows();
             this.spawnShape();
         }
 
@@ -46,10 +45,10 @@ class GameManager {
     }
 
     handleInput() {
-        if (keyIsDown(LEFT_ARROW) && this.time % 0.25 < deltaTime) {
+        if (keyIsDown(LEFT_ARROW) && time % 0.05 < deltaTime) {
             this.currentShape.moveLeft();
         }
-        if (keyIsDown(RIGHT_ARROW) && this.time % 0.25 < deltaTime) {
+        if (keyIsDown(RIGHT_ARROW) && time % 0.05 < deltaTime) {
             this.currentShape.moveRight();
         }
         //if (keyIsDown(DOWN_ARROW)) {
@@ -72,17 +71,15 @@ class GameManager {
             this.grid.clearRows(rows);
             this.oldShapes.forEach(shape => {
                 rows.forEach(row => {
-                    if(shape.getRows().includes(row)) {
-                        
-                        shape.setShapeFromRow(row);
+                    let shapeRows = shape.getRows();
+                    if(shapeRows.includes(row)) {
+                        console.log('Shape at ' + shape.position.y + ' has tiles in row ' + row);
+                        shape.setShapeFromRow(shapeRows.indexOf(row) + shape.position.y);
                     }
                     
                 });
-                shape.position.y++;
+                shape.position.y += 1;
             });
-
-                
-                
         }
     }
 }

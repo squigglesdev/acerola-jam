@@ -16,7 +16,7 @@ class Shapes {
         [0, 0, 1],
         [1, 1, 1],
         [0, 0, 0]
-    ], color: "#eba715", texture: lTexture, shader: lShader};
+    ], color: "#fc4e03", texture: lTexture, shader: lShader};
 
     O = { shape: [
         [1, 1],

@@ -67,7 +67,7 @@ class Shape {
                     pop();
                     
                     // Set the corresponding grid space to the shape's identifier
-                    console.log(!(this.position.y + i > 19));
+                    //console.log(!(this.position.y + i > 19));
                     if (!(this.position.y + i > 19)) {
                         grid.setSpace(this.position.x + j, this.position.y + i, this.identifier);
                     }
@@ -75,11 +75,12 @@ class Shape {
             }
         }
     }
+        
 
     getRows() {
         let rows = [];
         for (let i = 0; i < this.shape.length; i++) {
-            let row = this.position.y + i;
+            let row = this.position.y + i - 1;
             if (!rows.includes(row)) {
                 rows.push(row);
             }
@@ -90,6 +91,8 @@ class Shape {
     //used for clearing rows
     setShapeFromRow(row) {
         let y = this.gridToLocal(0, row).y;
+        //console.log(row)
+        console.log(y)
         //make the shape at row y 0
         this.shape[y].forEach(block => {
             block = 0;

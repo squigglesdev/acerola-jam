@@ -55,6 +55,7 @@ class Grid {
     }
 
     clearRows(rows) {
+        rows.sort((a, b) => b - a); // sort rows in descending order
         rows.forEach(row => {
             console.log('clearing row', row);
             this.spaces.splice(row, 1);
