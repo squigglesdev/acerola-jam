@@ -54,9 +54,9 @@ class GameManager {
         //if (keyIsDown(DOWN_ARROW)) {
         //    this.currentShape.moveDown();
         //}
-        //if (keyIsDown(UP_ARROW)) {
-        //    this.currentShape.rotate();
-        //}
+        if (keyIsDown(UP_ARROW)) {
+            this.currentShape.rotate(this.grid);
+        }
     }
 
     spawnShape() {

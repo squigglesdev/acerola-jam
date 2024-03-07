@@ -15,8 +15,10 @@ class Grid {
     }
 
     setSpace(x, y, value) {
+        console.log('setting space', x, y, value);
         try {
             this.spaces[y][x] = value;
+            return this.spaces[y][x];
         } catch (e) {
             console.log('error setting space', x, y, value);
         }
@@ -31,6 +33,16 @@ class Grid {
                 stroke(134, 154, 179);
                 strokeWeight(3);
                 line(0 - this.width * 25, y * 50, this.width * 25, y * 50);
+
+                try {
+                    if (!mainGame && this.spaces !== undefined && this.spaces[y][x] === true ) {
+                        push();
+                        rectMode(CORNER);
+                        noStroke();
+                        rect(x * 50 - this.width * 25, y * 50, 50, 50);
+                        pop();
+                    }
+                } catch {}
             }
             stroke(134, 154, 179);
             line(x * 50 - this.width * 25, 0, x * 50 - this.width * 25, this.height * 50);

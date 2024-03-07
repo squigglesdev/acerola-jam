@@ -1,6 +1,9 @@
 let gameCanvas;
 let gameManager;
+
+let pixelArtManager;
 let mainCamera;
+let mainGame = false;
 let grid;
 let deltaTime;
 let time = 0;
@@ -8,6 +11,7 @@ let time = 0;
 let shapes;
 
 let shapeShader;
+let thumbsup;
 
 let iTexture;
 let jTexture;
@@ -28,16 +32,16 @@ let zShader;
 
 function preload() {
     shapeShader = loadShader('src/shaders/shape.vert', 'src/shaders/shape.frag');
-        
-    
 }
 
 function setup() {
+    imageMode(CENTER);
     gameCanvas = createCanvas(window.innerWidth, window.innerHeight, WEBGL);
     setupShaders();
     shapes = new Shapes();
 
     gameManager = new GameManager();
+    pixelArtManager = new PixelArtManager();
 
     mainCamera = new Camera();
     mainCamera.setZoom(0.85);
@@ -57,9 +61,15 @@ function draw() {
     mainCamera.beginFrame();
     background(16,21,27);
     
+    switch (mainGame) {
+        case true:
+            gameManager.update();
+            break;
+        case false:
+            pixelArtManager.update();
+            break;
+    }
     
-    gameManager.update();
-
 
     mainCamera.endFrame();
 }

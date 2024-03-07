@@ -7,20 +7,18 @@ class Shapes {
     ], color: "#6bdbc1", texture: iTexture, shader: iShader};
 
     J = { shape: [
-        [1, 0, 0],
-        [1, 1, 1],
-        [0, 0, 0]
+        [1,0,0,1]
     ], color: "#4a5db0", texture: jTexture, shader: jShader};
 
     L = { shape: [
-        [0, 0, 1],
-        [1, 1, 1],
-        [0, 0, 0]
+        [1,1,1],
+        [1,1],
+        [1]
     ], color: "#fc4e03", texture: lTexture, shader: lShader};
 
     O = { shape: [
-        [1, 1],
-        [1, 1]
+        [1, 0, 1],
+        [1, 1, 1]
     ], color: "#ebd515", texture: oTexture, shader: oShader};
 
     S = { shape: [

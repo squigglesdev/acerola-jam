@@ -13,7 +13,7 @@ class Camera {
     }
 
     setPosition(position) {
-        this.position = position;
+        this.targetposition = position;
     }
 
     shake(strength, duration) {

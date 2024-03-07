@@ -74,8 +74,25 @@ class Shape {
                 }
             }
         }
+
+        if (Math.abs(this.position.x) > 30) {
+            mainCamera.setPosition(createVector(this.position.x * 50 - width/4, mainCamera.position.y));
+        }
     }
-        
+
+    rotate(grid) {
+        //cursed - rotate the shape by 45 degrees and clear the ghost spaces in the grid after rotation
+        let newShape = [];
+        for (let i = 0; i < this.shape[0].length; i++) {
+            newShape.push([]);
+            for (let j = this.shape.length - 1; j >= 0; j--) {
+                newShape[i].push(this.shape[j][i]);
+                grid.setSpace(this.position.x + i, this.position.y + j, false);
+            }
+        }
+        this.shape = newShape;
+
+    }
 
     getRows() {
         let rows = [];
@@ -173,16 +190,20 @@ class Shape {
     }
 
     canMoveHorizontal(direction) {
-        for (let i = 0; i < this.shape.length; i++) {
-            for (let j = 0; j < this.shape[i].length; j++) {
-                if (this.shape[i][j] === 1) {
-                    // Check if the shape is at the edge of the grid, or if there is another shape to the side
-                    if (this.position.x + j + direction < 0 || this.position.x + j + direction >= this.grid.width || (this.grid.spaces[this.position.y + i][this.position.x + j + direction] !== this.identifier && this.grid.spaces[this.position.y + i][this.position.x + j + direction])) {
-                        return false;
+        try {
+            for (let i = 0; i < this.shape.length; i++) {
+                for (let j = 0; j < this.shape[i].length; j++) {
+                    if (this.shape[i][j] === 1) {
+                        // Check if the shape is at the edge of the grid, or if there is another shape to the side
+                        if (this.position.x + j + direction == -1 || this.position.x + j + direction == this.grid.width || (this.grid.spaces[this.position.y + i][this.position.x + j + direction] !== this.identifier && this.grid.spaces[this.position.y + i][this.position.x + j + direction])) {
+                            return false;
+                        }
                     }
                 }
             }
+            return true;
+        } catch {
+            return false;
         }
-        return true;
     }
 }
