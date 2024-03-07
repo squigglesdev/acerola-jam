@@ -5,17 +5,17 @@ class Grid {
         this.spaces = [];
     }
 
-    generate() {
+    generate(value) {
         for (let y = 0; y < this.height; y++) {
             this.spaces[y] = [];
             for (let x = 0; x < this.width; x++) {
-                this.spaces[y][x] = false;
+                this.spaces[y][x] = value;
             }
         }
     }
 
     setSpace(x, y, value) {
-        console.log('setting space', x, y, value);
+        //console.log('setting space', x, y, value);
         try {
             this.spaces[y][x] = value;
             return this.spaces[y][x];
@@ -35,7 +35,7 @@ class Grid {
                 line(0 - this.width * 25, y * 50, this.width * 25, y * 50);
 
                 try {
-                    if (!mainGame && this.spaces !== undefined && this.spaces[y][x] === true ) {
+                    if (!mainGame && this.spaces !== undefined && this.spaces[y][x] === 1 ) {
                         push();
                         rectMode(CORNER);
                         noStroke();

@@ -1,9 +1,10 @@
 class GameManager {
     constructor() {
         this.grid = new Grid(10 , 20);
-        this.grid.generate();
+        this.grid.generate(false);
         this.score = 0;
         this.turn = 1;
+        this.speed = 4;
         this.turnInProgress = false;
         this.gameOver = false;
 
@@ -17,10 +18,11 @@ class GameManager {
 
         if (this.turnInProgress) {
             // every second, move the current shape down
-            if (time % 0.25 < deltaTime) {
+            if (time % (1/this.speed) < deltaTime) {
                 this.turnInProgress = this.currentShape.moveDown();
             }
         } else {
+            mainCamera.shake(5, 0.1);
             this.oldShapes.push(this.currentShape);
             this.checkRows();
             this.spawnShape();
@@ -51,11 +53,17 @@ class GameManager {
         if (keyIsDown(RIGHT_ARROW) && time % 0.05 < deltaTime) {
             this.currentShape.moveRight();
         }
-        //if (keyIsDown(DOWN_ARROW)) {
-        //    this.currentShape.moveDown();
-        //}
-        if (keyIsDown(UP_ARROW)) {
+        if (keyIsDown(DOWN_ARROW)) {
+            this.speed = 16;
+        } else {
+            this.speed = 4;
+        }
+        if (keyIsDown(UP_ARROW) && time % 0.1 < deltaTime) {
             this.currentShape.rotate(this.grid);
+        }
+        if (keyIsDown(32) && time % 0.1 < deltaTime) {
+            console.log('space');
+            this.currentShape.drop();
         }
     }
 

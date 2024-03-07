@@ -39,8 +39,6 @@ function setup() {
     gameCanvas = createCanvas(window.innerWidth, window.innerHeight, WEBGL);
     setupShaders();
     shapes = new Shapes();
-
-    gameManager = new GameManager();
     pixelArtManager = new PixelArtManager();
 
     mainCamera = new Camera();
@@ -58,12 +56,14 @@ function draw() {
     deltaTime = 1 / frameRate();
     time += deltaTime;
 
-    mainCamera.beginFrame();
+    
     background(16,21,27);
     
     switch (mainGame) {
         case true:
+            mainCamera.beginFrame();
             gameManager.update();
+            mainCamera.endFrame();
             break;
         case false:
             pixelArtManager.update();
@@ -71,7 +71,7 @@ function draw() {
     }
     
 
-    mainCamera.endFrame();
+    
 }
 
 function setupShaders() {

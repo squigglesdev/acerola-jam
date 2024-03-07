@@ -3,13 +3,14 @@ class Shape {
         // Shape matrix
         this.shapeChoice = shapes.randomShapes();
         this.shape = this.shapeChoice.shape;
+        console.log(this.shape);
 
         // Position - start in the centre
-        if (this.shape === shapes.O) {
-            this.position = createVector(4, 0);
-        } else {
+        //if (this.shape === shapes.O) {
+        //    this.position = createVector(4, 0);
+        //} else {
             this.position = createVector(3, 0);
-        }
+        //}
 
         this.identifier = random(1000000);
 
@@ -92,6 +93,10 @@ class Shape {
         }
         this.shape = newShape;
 
+    }
+
+    drop() {
+        while (this.moveDown()) {}
     }
 
     getRows() {
