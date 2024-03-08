@@ -15,7 +15,6 @@ class Grid {
     }
 
     setSpace(x, y, value) {
-        //console.log('setting space', x, y, value);
         try {
             this.spaces[y][x] = value;
             return this.spaces[y][x];
@@ -30,11 +29,12 @@ class Grid {
         }
         for (let x = 0; x < this.width + 1; x++) {
             for (let y = 0; y < this.height + 1; y++) {
-                stroke(134, 154, 179);
+                stroke('#fff');
                 strokeWeight(3);
                 line(0 - this.width * 25, y * 50, this.width * 25, y * 50);
 
                 try {
+                    
                     if (!mainGame && this.spaces !== undefined && this.spaces[y][x] === 1 ) {
                         push();
                         rectMode(CORNER);
@@ -44,7 +44,7 @@ class Grid {
                     }
                 } catch {}
             }
-            stroke(134, 154, 179);
+            stroke('#fff');
             line(x * 50 - this.width * 25, 0, x * 50 - this.width * 25, this.height * 50);
         }
     }
@@ -69,7 +69,6 @@ class Grid {
     clearRows(rows) {
         rows.sort((a, b) => b - a); // sort rows in descending order
         rows.forEach(row => {
-            console.log('clearing row', row);
             this.spaces.splice(row, 1);
             this.spaces.unshift(new Array(this.width).fill(false));
         });

@@ -10,6 +10,9 @@ class GameManager {
 
         this.spawnShape();
         this.oldShapes = [];
+
+        npc.position = createVector(-width/2,height/2);
+
     }
 
     update() {
@@ -22,7 +25,6 @@ class GameManager {
                 this.turnInProgress = this.currentShape.moveDown();
             }
         } else {
-            mainCamera.shake(5, 0.1);
             this.oldShapes.push(this.currentShape);
             this.checkRows();
             this.spawnShape();
@@ -62,7 +64,6 @@ class GameManager {
             this.currentShape.rotate(this.grid);
         }
         if (keyIsDown(32) && time % 0.1 < deltaTime) {
-            console.log('space');
             this.currentShape.drop();
         }
     }
@@ -81,7 +82,6 @@ class GameManager {
                 rows.forEach(row => {
                     let shapeRows = shape.getRows();
                     if(shapeRows.includes(row)) {
-                        console.log('Shape at ' + shape.position.y + ' has tiles in row ' + row);
                         shape.setShapeFromRow(shapeRows.indexOf(row) + shape.position.y);
                     }
                     

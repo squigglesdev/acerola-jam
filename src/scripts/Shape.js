@@ -3,7 +3,6 @@ class Shape {
         // Shape matrix
         this.shapeChoice = shapes.randomShapes();
         this.shape = this.shapeChoice.shape;
-        console.log(this.shape);
 
         // Position - start in the centre
         //if (this.shape === shapes.O) {
@@ -68,7 +67,6 @@ class Shape {
                     pop();
                     
                     // Set the corresponding grid space to the shape's identifier
-                    //console.log(!(this.position.y + i > 19));
                     if (!(this.position.y + i > 19)) {
                         grid.setSpace(this.position.x + j, this.position.y + i, this.identifier);
                     }
@@ -113,8 +111,6 @@ class Shape {
     //used for clearing rows
     setShapeFromRow(row) {
         let y = this.gridToLocal(0, row).y;
-        //console.log(row)
-        console.log(y)
         //make the shape at row y 0
         this.shape[y].forEach(block => {
             block = 0;
@@ -141,6 +137,7 @@ class Shape {
 
             return true;
         }
+        mainCamera.shake(2.5, 0.1);
         return false;
     }
 

@@ -3,6 +3,8 @@ let gameManager;
 
 let pixelArtManager;
 let mainCamera;
+let npc;
+
 let mainGame = false;
 let grid;
 let deltaTime;
@@ -12,6 +14,8 @@ let shapes;
 
 let shapeShader;
 let thumbsup;
+
+let cuteBG;
 
 let iTexture;
 let jTexture;
@@ -32,23 +36,43 @@ let zShader;
 
 function preload() {
     shapeShader = loadShader('src/shaders/shape.vert', 'src/shaders/shape.frag');
+
+    cuteOverlay = loadImage('src/images/OVERLAY.png');
+    cuteLogo = loadImage('src/images/LOGO.png');
+
+    strawbSprite = loadImage('src/images/NPC.png');
+    bubbleSpriteLeading = loadImage('src/images/BUBBLE_LEADING.png');
+    bubbleSpriteEnding = loadImage('src/images/BUBBLE_ENDING.png');
+
+    pixeloid = loadFont('src/fonts/pixeloid.ttf');
 }
 
 function setup() {
     imageMode(CENTER);
     gameCanvas = createCanvas(window.innerWidth, window.innerHeight, WEBGL);
     setupShaders();
+
     shapes = new Shapes();
+
     pixelArtManager = new PixelArtManager();
 
     mainCamera = new Camera();
     mainCamera.setZoom(0.85);
 
+    npc = new NPC();
+
     background(0);
+
+    frameRate(165);
 }
 
 function windowResized() {
     resizeCanvas(window.innerWidth, window.innerHeight);
+    if (!mainGame) {
+        npc.position = createVector(-width/2 + 100, height/2 - 125);
+    } else {
+        npc.position = createVector(-width/2, height/2);
+    }
 }
 
 function draw() {
@@ -69,8 +93,8 @@ function draw() {
             pixelArtManager.update();
             break;
     }
-    
 
+    npc.draw();
     
 }
 

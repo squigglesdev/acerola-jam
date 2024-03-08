@@ -4,6 +4,8 @@ class PixelArtManager {
         this.grid = new Grid(4 , 4);
         this.grid.generate(0);
 
+        this.dots = new Dots();
+
         this.enterCanBePressed = false;
         setTimeout(() => {
             this.enterCanBePressed = true;
@@ -18,7 +20,15 @@ class PixelArtManager {
     }
 
     update() {
+        background("#ffa0fa")
+        //image(cuteBG, -width/2, -height/2, width, (width/16) * 9)
+        this.dots.draw();
         this.handleInput();
+        push();
+        imageMode(CENTER);
+        image(cuteLogo, 0, -height/3, cuteLogo.width/2, cuteLogo.height/2);
+        image(cuteOverlay, 0, height/2, width, (width/16) * 9);
+        pop();
         this.grid.draw();
     }
 
@@ -30,8 +40,8 @@ class PixelArtManager {
                 this.enterCanBePressed = true;
             }, 1000);
             
+            mainCamera.shake(5, 0.1);
             shapes.shapes[this.drawcount].shape = [...this.grid.spaces];
-            console.log(shapes.shapes[this.drawcount]);
             this.drawcount++;
             this.grid.generate(0);
             
@@ -40,7 +50,14 @@ class PixelArtManager {
             this.enterCanBePressed = false;
             mainGame = true;
         }
-        if (mouseIsPressed && this.canClick) {
+        if (this.mouseDragging) {
+            let m2g = this.mouseToGridSpace(mouseX, mouseY);
+            let x = m2g.x;
+            let y = m2g.y;
+            if (x >= 0 && x < this.grid.width && y >= 0 && y < this.grid.height) {
+                this.grid.setSpace(x, y, 1);
+            }
+        } else if (mouseIsPressed && this.canClick) {
             let m2g = this.mouseToGridSpace(mouseX, mouseY);
             let x = m2g.x;
             let y = m2g.y;
@@ -54,15 +71,8 @@ class PixelArtManager {
             this.canClick = false;
             setTimeout(() => {
                 this.canClick = true;
-            }, 500);
-        } else if (this.mouseDragging) {
-            let m2g = this.mouseToGridSpace(mouseX, mouseY);
-            let x = m2g.x;
-            let y = m2g.y;
-            if (x >= 0 && x < this.grid.width && y >= 0 && y < this.grid.height) {
-                this.grid.setSpace(x, y, 1);
-            }
-        }
+            }, 250);
+        } 
         if (mouseIsPressed) {
             this.mouseTimer += deltaTime;
         } else {
