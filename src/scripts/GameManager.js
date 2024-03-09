@@ -13,9 +13,13 @@ class GameManager {
 
         npc.position = createVector(-width/2,height/2);
 
+        CURRENTPHASE = 2;
+        dialogueSystem = new DialogueSystem();
+        dialogueSystem.start();
     }
 
     update() {
+        
         this.handleInput();
 
 

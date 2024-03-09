@@ -7,6 +7,7 @@ class NPC {
 
         this.currentChar = 0;
         this.duration = 0;
+        this.inputMethod = "";
         this.currentString = "";
         this.fullString = "";
     }
@@ -24,10 +25,20 @@ class NPC {
         
         this.drawBubble();
         this.drawText();
+        let oldChar = this.currentChar;
 
         this.currentChar += (1/this.duration)/(deltaTime * 1000);
         this.currentChar = constrain(this.currentChar, 0, this.fullString.length);
         this.currentString = this.fullString.substring(0, this.currentChar);
+
+        if (Math.floor(this.currentChar) == 1) {
+            speakSound.loop();
+        }
+
+        if (this.currentChar == this.fullString.length) {
+            speakSound.stop();
+        }
+
 
         pop();
     }
@@ -38,6 +49,7 @@ class NPC {
         textAlign(LEFT, TOP);
         fill("#000");
         text(this.currentString, this.position.x + 120 + this.bubbleSpriteLeading.width/4, this.position.y - 21);
+        
     }
 
     drawBubble() {
@@ -55,11 +67,23 @@ class NPC {
             image(this.bubbleSpriteEnding, this.position.x + 140 + this.bubbleSpriteLeading.width/4 + bounds.w, this.position.y - this.bubbleSpriteLeading.height/8, this.bubbleSpriteEnding.width/4, this.bubbleSpriteLeading.height/4)
         }
         pop();
+        push();
+        imageMode(CENTER);
+        if (this.currentChar == this.fullString.length && this.inputMethod == "spacebar") {
+            //swap sprites after 0.5s
+            if (time % 1 < 0.5) {
+                image(spaceSprite1, this.position.x + 200 + this.bubbleSpriteLeading.width/4 + bounds.w, this.position.y, spaceSprite0.width/2, spaceSprite0.height/2);
+            } else {
+                image(spaceSprite0, this.position.x + 200 + this.bubbleSpriteLeading.width/4 + bounds.w, this.position.y, spaceSprite1.width/2, spaceSprite1.height/2);
+            }
+        }
+        pop();
     }
 
-    say(text, duration) {
+    say(text, duration, inputMethod) {
         this.currentChar = 0
         this.duration = duration;
         this.fullString = text;
+        this.inputMethod = inputMethod;
     }
 }

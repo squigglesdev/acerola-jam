@@ -1,0 +1,47 @@
+[
+    {
+        "dialogue" : "Haii!! Welcome to KawaiiPixel! ^^",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "Why not try drawing some cute shapes up there?",
+        "animationDuration" : 1.2,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "Just click on the squares to fill them!",
+        "animationDuration" : 1.2,
+        "staysUntil" : "mouseclick"
+    },
+    {
+        "dialogue" : "Wow! You're doing it!",
+        "animationDuration" : 1.2,
+        "staysUntil" : "mouseclick"
+    },
+    {
+        "dialogue" : "Press enter when you're done to start a new one! :D",
+        "animationDuration" : 1,
+        "staysUntil" : "enter"
+    },
+    {
+        "dialogue" : "Nice! :3",
+        "animationDuration" : 1.2,
+        "staysUntil" : "enter"
+    },
+    {
+        "dialogue" : "You're so good at this!!",
+        "animationDuration" : 1.2,
+        "staysUntil" : "mouseclick"
+    },
+    {
+        "dialogue" : "Such an artist!!",
+        "animationDuration" : 1.2,
+        "staysUntil" : "enter"
+    },
+    {
+        "dialogue" : "",
+        "animationDuration" : 1.2,
+        "staysUntil" : "mouseclick"
+    }
+]

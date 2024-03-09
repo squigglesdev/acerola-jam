@@ -1,0 +1,22 @@
+[
+    {
+        "dialogue" : "Huh?! What's going on?!!",
+        "animationDuration" : 1,
+        "staysUntil" : 5
+    },
+    {
+        "dialogue" : "What is this place-",
+        "animationDuration" : 1,
+        "staysUntil" : 1
+    },
+    {
+        "dialogue" : "Wait a minute... are those your shapes?!",
+        "animationDuration" : 1,
+        "staysUntil" : 5
+    },
+    {
+        "dialogue" : "It's used your shapes for a bad version of tetris!!",
+        "animationDuration" : 1,
+        "staysUntil" : 5
+    }
+]

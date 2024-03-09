@@ -1,3 +1,7 @@
+let CURRENTPHASE;
+
+let dialogueSystem;
+
 let gameCanvas;
 let gameManager;
 
@@ -44,7 +48,15 @@ function preload() {
     bubbleSpriteLeading = loadImage('src/images/BUBBLE_LEADING.png');
     bubbleSpriteEnding = loadImage('src/images/BUBBLE_ENDING.png');
 
+    spaceSprite0 = loadImage('src/images/space00.png');
+    spaceSprite1 = loadImage('src/images/space01.png');
+
     pixeloid = loadFont('src/fonts/pixeloid.ttf');
+
+    phase1Dialogue = loadJSON("src/dialogue/phase1.json");
+    phase2Dialogue = loadJSON("src/dialogue/phase2.json");
+
+    speakSound = loadSound("src/sounds/speak.mp3");
 }
 
 function setup() {
@@ -64,6 +76,9 @@ function setup() {
     background(0);
 
     frameRate(165);
+
+    dialogueSystem = new DialogueSystem();
+    dialogueSystem.start();
 }
 
 function windowResized() {
@@ -141,3 +156,14 @@ function setupShaders() {
     zTexture.rect(0, 0, 50, 50);
     zShader = shapeShader.copyToContext(zTexture);
 }
+
+function waitUntil(condition) {
+    const poll = resolve => {
+        if(condition()) resolve();
+        else setTimeout(_ => poll(resolve), 100);
+    }
+
+    return new Promise(poll);
+}
+
+const delay = ms => new Promise(res => setTimeout(res, ms));

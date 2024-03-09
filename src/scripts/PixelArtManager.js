@@ -17,9 +17,11 @@ class PixelArtManager {
         this.mouseTimer = 0;
 
         this.drawcount = 0;
+        CURRENTPHASE = 1;
     }
 
     update() {
+        
         background("#ffa0fa")
         //image(cuteBG, -width/2, -height/2, width, (width/16) * 9)
         this.dots.draw();

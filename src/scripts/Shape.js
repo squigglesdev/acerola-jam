@@ -8,7 +8,7 @@ class Shape {
         //if (this.shape === shapes.O) {
         //    this.position = createVector(4, 0);
         //} else {
-            this.position = createVector(3, 0);
+            this.position = createVector(3, -3);
         //}
 
         this.identifier = random(1000000);
@@ -178,17 +178,21 @@ class Shape {
     }
 
     canMoveDown() {
-        for (let i = 0; i < this.shape.length; i++) {
-            for (let j = 0; j < this.shape[i].length; j++) {
-                if (this.shape[i][j] === 1) {
-                    // Check if the shape is at the bottom of the grid, or if there is another shape below it
-                    if (this.position.y + i + 1 >= this.grid.height || (this.grid.spaces[this.position.y + i + 1][this.position.x + j] !== this.identifier && this.grid.spaces[this.position.y + i + 1][this.position.x + j])) {
-                        return false;
+        try {
+            for (let i = 0; i < this.shape.length; i++) {
+                for (let j = 0; j < this.shape[i].length; j++) {
+                    if (this.shape[i][j] === 1) {
+                        // Check if the shape is at the bottom of the grid, or if there is another shape below it
+                        if (this.position.y + i + 1 >= this.grid.height || (this.grid.spaces[this.position.y + i + 1][this.position.x + j] !== this.identifier && this.grid.spaces[this.position.y + i + 1][this.position.x + j])) {
+                            return false;
+                        }
                     }
                 }
             }
+            return true;
+        } catch {
+            return true;
         }
-        return true;
     }
 
     canMoveHorizontal(direction) {
