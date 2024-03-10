@@ -1,5 +1,5 @@
 class GameManager {
-    constructor() {
+    constructor(afterReload) {
         this.grid = new Grid(10 , 20);
         this.grid.generate(false);
         this.score = 0;
@@ -13,15 +13,31 @@ class GameManager {
 
         npc.position = createVector(-width/2,height/2);
 
-        CURRENTPHASE = 2;
+        console.log(afterReload)
+
+        if (!afterReload || afterReload == undefined) CURRENTPHASE = 2;
+        else if (afterReload) CURRENTPHASE = 3;
+
         dialogueSystem = new DialogueSystem();
         dialogueSystem.start();
+
+        localStorage.setItem("currentPhase", "3");
+        localStorage.setItem("I", JSON.stringify(shapes.I.shape));
+        localStorage.setItem("J", JSON.stringify(shapes.J.shape));
+        localStorage.setItem("L", JSON.stringify(shapes.L.shape));
+        localStorage.setItem("O", JSON.stringify(shapes.O.shape));
+        localStorage.setItem("S", JSON.stringify(shapes.S.shape));
+        localStorage.setItem("T", JSON.stringify(shapes.T.shape));
+        localStorage.setItem("Z", JSON.stringify(shapes.Z.shape));
+
+        console.log(localStorage)
     }
 
     update() {
         
         this.handleInput();
 
+        if (CURRENTPHASE == 4) { return; }
 
         if (this.turnInProgress) {
             // every second, move the current shape down

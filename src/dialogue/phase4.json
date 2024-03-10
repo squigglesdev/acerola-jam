@@ -1,0 +1,47 @@
+[
+    {
+        "dialogue" : "You did it.",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "Yay.",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "Ugh! You're too smart!!",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "One of these days I'm gonna trap someone in that game...",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "Do you know how much time I spent making it?!",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "I should fix that clipping bug...",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue": "I guess I have no choice but to wipe your memory.",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue": "Goodbye.",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue": "",
+        "animationDuration" : 0.1,
+        "staysUntil" : "reload"
+    }
+]

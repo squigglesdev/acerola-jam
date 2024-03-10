@@ -8,7 +8,7 @@ class Shape {
         //if (this.shape === shapes.O) {
         //    this.position = createVector(4, 0);
         //} else {
-            this.position = createVector(3, -3);
+            this.position = createVector(3, -1);
         //}
 
         this.identifier = random(1000000);
@@ -76,6 +76,10 @@ class Shape {
 
         if (Math.abs(this.position.x) > 30) {
             mainCamera.setPosition(createVector(this.position.x * 50 - width/4, mainCamera.position.y));
+            CURRENTPHASE = 4;
+            localStorage.clear();
+            dialogueSystem = new DialogueSystem();
+            dialogueSystem.start();
         }
     }
 

@@ -37,6 +37,12 @@ let sShader;
 let tShader;
 let zShader;
 
+let speakSound1;
+let speakSound2;
+let speakSound3;
+
+let speakSounds = []
+
 
 function preload() {
     shapeShader = loadShader('src/shaders/shape.vert', 'src/shaders/shape.frag');
@@ -55,8 +61,14 @@ function preload() {
 
     phase1Dialogue = loadJSON("src/dialogue/phase1.json");
     phase2Dialogue = loadJSON("src/dialogue/phase2.json");
+    phase3Dialogue = loadJSON("src/dialogue/phase3.json");
+    phase4Dialogue = loadJSON("src/dialogue/phase4.json");
 
-    speakSound = loadSound("src/sounds/speak.mp3");
+    speakSound1 = loadSound("src/sounds/speak1.mp3");
+    speakSound2 = loadSound("src/sounds/speak2.mp3");
+    speakSound3 = loadSound("src/sounds/speak3.mp3");
+
+    speakSounds.push(speakSound1, speakSound2, speakSound3);
 }
 
 function setup() {
@@ -66,19 +78,35 @@ function setup() {
 
     shapes = new Shapes();
 
-    pixelArtManager = new PixelArtManager();
+    npc = new NPC();
+
+
+    if (!localStorage.getItem("currentPhase") || localStorage.getItem("currentPhase") == "1" || localStorage.getItem("currentPhase") == "2") {
+        mainGame = false;
+        pixelArtManager = new PixelArtManager();
+        dialogueSystem = new DialogueSystem();
+        dialogueSystem.start();
+    } else if (localStorage.getItem("currentPhase") == "3") {
+        mainGame = true;
+        shapes.I.shape = JSON.parse(localStorage.getItem("I"));
+        shapes.J.shape = JSON.parse(localStorage.getItem("J"));
+        shapes.L.shape = JSON.parse(localStorage.getItem("L"));
+        shapes.O.shape = JSON.parse(localStorage.getItem("O"));
+        shapes.S.shape = JSON.parse(localStorage.getItem("S"));
+        shapes.T.shape = JSON.parse(localStorage.getItem("T"));
+        shapes.Z.shape = JSON.parse(localStorage.getItem("Z"));
+        gameManager = new GameManager(true);
+    }
 
     mainCamera = new Camera();
     mainCamera.setZoom(0.85);
 
-    npc = new NPC();
-
+    
     background(0);
 
     frameRate(165);
 
-    dialogueSystem = new DialogueSystem();
-    dialogueSystem.start();
+    
 }
 
 function windowResized() {

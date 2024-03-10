@@ -1,0 +1,27 @@
+[
+    {
+        "dialogue" : "No! It didn't work! :(",
+        "animationDuration" : 1,
+        "staysUntil" : 5
+    },
+    {
+        "dialogue" : "It looks like you can press the up arrow to rotate...",
+        "animationDuration" : 1,
+        "staysUntil" : 5
+    },
+    {
+        "dialogue" : "There has to be a way out...",
+        "animationDuration" : 1,
+        "staysUntil" : 5
+    },
+    {
+        "dialogue": "I'm out of ideas. You figure it out!",
+        "animationDuration" : 1,
+        "staysUntil" : 5
+    },
+    {
+        "dialogue": "",
+        "animationDuration" : 1,
+        "staysUntil" : "end"
+    }
+]

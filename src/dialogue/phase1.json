@@ -5,7 +5,12 @@
         "staysUntil" : "spacebar"
     },
     {
-        "dialogue" : "Why not try drawing some cute shapes up there?",
+        "dialogue" : "Before we begin, I'm obligated to tell you that [This Site Uses Cookies]",
+        "animationDuration" : 1.2,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "Now that that's out of the way, why not try drawing some cute shapes up there?",
         "animationDuration" : 1.2,
         "staysUntil" : "spacebar"
     },
@@ -25,6 +30,11 @@
         "staysUntil" : "enter"
     },
     {
+        "dialogue" : "7 ought to do... huh? Forget I said that.",
+        "animationDuration" : 1.2,
+        "staysUntil" : "enter"
+    },
+    {
         "dialogue" : "Nice! :3",
         "animationDuration" : 1.2,
         "staysUntil" : "enter"
@@ -32,7 +42,7 @@
     {
         "dialogue" : "You're so good at this!!",
         "animationDuration" : 1.2,
-        "staysUntil" : "mouseclick"
+        "staysUntil" : "enter"
     },
     {
         "dialogue" : "Such an artist!!",
@@ -40,8 +50,13 @@
         "staysUntil" : "enter"
     },
     {
-        "dialogue" : "",
+        "dialogue" : "One of the greats! ^^",
         "animationDuration" : 1.2,
-        "staysUntil" : "mouseclick"
+        "staysUntil" : "enter"
+    },
+    {
+        "dialogue" : "So good!!!!",
+        "animationDuration" : 1.2,
+        "staysUntil" : "enter"
     }
 ]

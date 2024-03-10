@@ -4,6 +4,10 @@ class DialogueSystem {
             this.dialogue = Object.values(phase1Dialogue);
         } else if (CURRENTPHASE == 2) {
             this.dialogue = Object.values(phase2Dialogue);
+        } else if (CURRENTPHASE == 3) {
+            this.dialogue = Object.values(phase3Dialogue);
+        } else if (CURRENTPHASE == 4) {
+            this.dialogue = Object.values(phase4Dialogue);
         }
 
         this.spaceCanBePressed = false;
@@ -20,6 +24,8 @@ class DialogueSystem {
         setTimeout(() => {
             this.enterCanBePressed = true;
         },1000);
+
+        this.startTime = 1;
     }
 
     async start() {
@@ -27,7 +33,12 @@ class DialogueSystem {
             this.dialogue = Object.values(phase1Dialogue);
         } else if (CURRENTPHASE == 2) {
             this.dialogue = Object.values(phase2Dialogue);
+        } else if (CURRENTPHASE == 3) {
+            this.dialogue = Object.values(phase3Dialogue);
+        } else if (CURRENTPHASE == 4) {
+            this.dialogue = Object.values(phase4Dialogue);
         }
+
         for (let line = 0; line < this.dialogue.length; line++) {
             npc.say(this.dialogue[line].dialogue, this.dialogue[line].animationDuration, this.dialogue[line].staysUntil);
             console.log(this.dialogue[line].dialogue)
@@ -52,6 +63,8 @@ class DialogueSystem {
                 await waitUntil(_ => (keyIsDown(ENTER) === true && this.enterCanBePressed === true)); 
             } else if (this.dialogue[line].staysUntil > 0) {
                 await delay((this.dialogue[line].staysUntil + this.dialogue[line].animationDuration) * 1000); 
+            } else if (this.dialogue[line].staysUntil == "reload") {
+                location.reload();
             }
         }
     }

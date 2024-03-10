@@ -34,7 +34,7 @@ class Camera {
         rectMode(CENTER);
         scale(this.zoom);
         if (this.shakeDuration > 0) {
-            this.shakeDuration-= deltaTime;
+            this.shakeDuration -= deltaTime;
             this.performShake();
         }
     }

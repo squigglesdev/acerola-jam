@@ -10,6 +10,7 @@ class NPC {
         this.inputMethod = "";
         this.currentString = "";
         this.fullString = "";
+        this.endPhrase = false;
     }
 
     draw() {
@@ -31,12 +32,14 @@ class NPC {
         this.currentChar = constrain(this.currentChar, 0, this.fullString.length);
         this.currentString = this.fullString.substring(0, this.currentChar);
 
-        if (Math.floor(this.currentChar) == 1) {
-            speakSound.loop();
-        }
+        this.endPhrase = false;
 
         if (this.currentChar == this.fullString.length) {
-            speakSound.stop();
+            this.endPhrase = true;
+        }
+
+        if (this.fullString[this.currentChar] != " " && time % 0.05 < deltaTime && !this.endPhrase) {
+            random(speakSounds).play();
         }
 
 

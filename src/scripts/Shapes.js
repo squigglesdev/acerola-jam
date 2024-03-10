@@ -43,6 +43,7 @@ class Shapes {
         this.shapes = [this.I, this.J, this.L, this.O, this.S, this.T, this.Z];
     }
 
+
     randomShapes() {
         return this.shapes[Math.floor(Math.random() * this.shapes.length)];
     }

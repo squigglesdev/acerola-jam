@@ -18,9 +18,7 @@ class Grid {
         try {
             this.spaces[y][x] = value;
             return this.spaces[y][x];
-        } catch (e) {
-            console.log('error setting space', x, y, value);
-        }
+        } catch {}
     }
 
     draw() {
