@@ -10,12 +10,12 @@
         "staysUntil" : 5
     },
     {
-        "dialogue" : "There has to be a way out...",
+        "dialogue" : "I guess there is no way out... :(",
         "animationDuration" : 1,
         "staysUntil" : 5
     },
     {
-        "dialogue": "I'm out of ideas. You figure it out!",
+        "dialogue": "At least, I'm out of ideas. You figure it out!",
         "animationDuration" : 1,
         "staysUntil" : 5
     },

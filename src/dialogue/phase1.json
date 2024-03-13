@@ -30,7 +30,7 @@
         "staysUntil" : "enter"
     },
     {
-        "dialogue" : "7 ought to do... huh? Forget I said that.",
+        "dialogue" : "6 ought to do... huh? Forget I said that.",
         "animationDuration" : 1.2,
         "staysUntil" : "enter"
     },
@@ -51,11 +51,6 @@
     },
     {
         "dialogue" : "One of the greats! ^^",
-        "animationDuration" : 1.2,
-        "staysUntil" : "enter"
-    },
-    {
-        "dialogue" : "So good!!!!",
         "animationDuration" : 1.2,
         "staysUntil" : "enter"
     }

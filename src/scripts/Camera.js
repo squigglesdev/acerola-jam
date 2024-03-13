@@ -41,6 +41,9 @@ class Camera {
 
     endFrame() {  
         translate(this.position.x, this.position.y);
-        scale(2);
+        scale(1/this.zoom);
+        if (uiZoom > 1) {
+            scale(uiZoom);
+        }
     }
 }

@@ -11,7 +11,7 @@ class GameManager {
         this.spawnShape();
         this.oldShapes = [];
 
-        npc.position = createVector(-width/2,height/2);
+        npc.position = createVector(-width + 100,height);
 
         console.log(afterReload)
 
@@ -31,6 +31,9 @@ class GameManager {
         localStorage.setItem("Z", JSON.stringify(shapes.Z.shape));
 
         console.log(localStorage)
+
+        calmBGM.stop();
+        fightBGM.loop();
     }
 
     update() {

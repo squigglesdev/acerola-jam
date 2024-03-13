@@ -28,7 +28,7 @@
         "dialogue" : "I should fix that clipping bug...",
         "animationDuration" : 1,
         "staysUntil" : "spacebar"
-    },
+    },    
     {
         "dialogue": "I guess I have no choice but to wipe your memory.",
         "animationDuration" : 1,
@@ -36,6 +36,21 @@
     },
     {
         "dialogue": "Goodbye.",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "[This game has been loads of fun to work on, thanks so much for playing! - Squiggles]",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "[The amazing music was made for an actual tetris-like game called tetr.io. go play it!]",
+        "animationDuration" : 1,
+        "staysUntil" : "spacebar"
+    },
+    {
+        "dialogue" : "[I made everything else myself though. I hope you enjoyed it!]",
         "animationDuration" : 1,
         "staysUntil" : "spacebar"
     },

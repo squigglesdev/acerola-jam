@@ -36,18 +36,18 @@ class PixelArtManager {
 
     // click on grid spaces to toggle them
     handleInput() {
-        if (keyIsDown(ENTER) && this.enterCanBePressed && this.drawcount < 7) {
+        if (keyIsDown(ENTER) && this.enterCanBePressed && this.drawcount < 6) {
             this.enterCanBePressed = false;
             setTimeout(() => {
                 this.enterCanBePressed = true;
             }, 1000);
             
             mainCamera.shake(5, 0.1);
-            shapes.shapes[this.drawcount].shape = [...this.grid.spaces];
+            shapes.shapes[this.drawcount + 1].shape = [...this.grid.spaces];
             this.drawcount++;
             this.grid.generate(0);
             
-        } else if (this.drawcount >= 7) {
+        } else if (this.drawcount >= 6) {
             gameManager = new GameManager();
             this.enterCanBePressed = false;
             mainGame = true;

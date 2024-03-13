@@ -41,8 +41,12 @@ let speakSound1;
 let speakSound2;
 let speakSound3;
 
-let speakSounds = []
+let speakSounds = [];
 
+let calmBGM;
+let fightBGM;
+
+let uiZoom = 1;
 
 function preload() {
     shapeShader = loadShader('src/shaders/shape.vert', 'src/shaders/shape.frag');
@@ -68,6 +72,9 @@ function preload() {
     speakSound2 = loadSound("src/sounds/speak2.mp3");
     speakSound3 = loadSound("src/sounds/speak3.mp3");
 
+    calmBGM = loadSound("src/sounds/calm.mp3");
+    fightBGM = loadSound("src/sounds/fight.mp3");
+
     speakSounds.push(speakSound1, speakSound2, speakSound3);
 }
 
@@ -86,6 +93,7 @@ function setup() {
         pixelArtManager = new PixelArtManager();
         dialogueSystem = new DialogueSystem();
         dialogueSystem.start();
+        calmBGM.loop();
     } else if (localStorage.getItem("currentPhase") == "3") {
         mainGame = true;
         shapes.I.shape = JSON.parse(localStorage.getItem("I"));

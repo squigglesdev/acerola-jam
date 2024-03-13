@@ -80,6 +80,10 @@ class Shape {
             localStorage.clear();
             dialogueSystem = new DialogueSystem();
             dialogueSystem.start();
+            calmBGM.stop();
+            fightBGM.stop();
+            uiZoom = 2;
+            npc.position = createVector(mainCamera.position.x - (width/2 + 200), mainCamera.position.y);
         }
     }
 
@@ -142,6 +146,16 @@ class Shape {
             return true;
         }
         mainCamera.shake(2.5, 0.1);
+        //console.log('cant move down');
+        if (this.position.y < 3) {
+            //console.log('Reset');
+            gameManager.oldShapes = [];
+            gameManager.grid.generate(false);
+            gameManager.currentShape.drop();
+            gameManager.oldShapes = [];
+            gameManager.grid.generate(false);
+            return false;
+        }
         return false;
     }
 
