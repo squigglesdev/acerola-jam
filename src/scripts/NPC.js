@@ -28,7 +28,7 @@ class NPC {
         this.drawText();
         let oldChar = this.currentChar;
 
-        this.currentChar += (1/this.duration)/(deltaTime * 1000);
+        this.currentChar += this.duration * (deltaTime * 25);
         this.currentChar = constrain(this.currentChar, 0, this.fullString.length);
         this.currentString = this.fullString.substring(0, this.currentChar);
 
